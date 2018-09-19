@@ -1,0 +1,111 @@
+#Malicious software
+    CIA Triad
+
+        CIA: Confidentiality, Integrity, Availability. It's a guiding model for designing information security policies.
+
+        Confidentiality: It means keeping things hidden.It means only personnel authorised to view data, should have the access to the data.
+
+        Integrity: Keeping data accurate and untampered
+
+        Availability: The information we have is readily accessible to those people that should have it.
+    #
+
+    #Essential security terms
+
+        Risk: The possibility of suffering a loss in the event of an attack on the system
+
+        Vulnerability: A flaw in a system that could be exploited to compromise the system
+
+        0-day Vulnerability: A Vulnerability that is not known to the software developer or vendor, but is known to an attacker. Then name refers to the amount of time the software vendor has had to react to fix the Vulnerability, zero days.
+
+        Exploit: software that is used to take advantage of a security bug or Vulnerability.
+
+        Threat: The possibility of danger that could exploit a vulnerability.
+
+        Hacker: Someone who attempts to break into or exploit a system.
+
+        Attack: An actual attempt at causing harm to a system.
+    #
+
+    #Malicious software
+        
+        Malware: A type of malicious software that can be used to obtain your sensitive information, or delete or modify files.
+
+        #Types of malwares
+
+        Viruses:
+
+        Adware:
+
+        Trojans:
+
+        Spyware:
+
+        Keylogger:
+
+        Ransomware:
+        
+        Botnet: Bots are the computer programs used by attacker to control and use our system resources. Botnets are designed to utilize the power of the internet-connected machines to perform some distributed function.
+        
+        Backdoor: A way to get into a system if the other methods to get in the system aren't allowed.
+        
+        Rootkit: A collection of software or tools that an Admin would use. It allows admin level modification to an OS. A rootkit can be hard to detect because it can hide itself from the system using the system itself. A rootkit can run lots of malic processes, but at the same time it won't show up in task manager because it can hide its own presence.
+        
+        Logic bomb: A type of malware that’s intentionally installed. Installed to later gain control on the system triggered by a certain event or time
+        
+    #
+#
+
+#Network Attacks
+
+    #Network Attacks
+        
+        DNS Cache Poisoning Attack:A DNS Cache Poisoning attack works by tricking a DNS server into accepting a fake DNS record that will point you to a compromised DNS server.
+
+        Man-in-the-middle attack: A man-in-the-middle attack is an attack that places an attacker in the middle of two hosts that think they are communicating directly with each other.
+        A common man-in-the-middle attack is a session hijacking or cookie hijacking.
+        Another way a man-in-the-middle attack can be established is a rogue access point attack. 
+        Rogue AP: A rogue AP is an access point installed in the network without the network administrator's knowledge.
+        Evil twin: A man-in-the-middle attack method. The premise of evil twin attack is for you to connect to a network that is identical to yours. This identical network, the evil twin, is controlled by the attacker and can thus monitor all your network traffic.
+    #
+
+    #Denial-of-Service Attacks
+
+        DoS: Denial of Service attack, an attack that tries to prevent access to a service for legitimate users by overwhelming the network or server.
+        POD: Ping of Death, an example of DoS attack. It works by sending a malformed ping to a computer. The ping would be larger in size than what the internet protocol was made to handle. So it results in a buffer overflow. This can cause the system to crash and potentially allow the execution of malicious code.
+        Ping Flood: It sends tons of ping packets to a system. More specifically, it sends ICMP echo requests, since a ping expects an equal number of ICMP echo replies. If a computer can't keep up with this, then it's prone to being overwhelmed and taken down.
+        SYN flood or Half Open Attacks: To make a TCP connection, a client sends a SYN packet to a server he wants to connect to. Next, the server sends back a SYN-ACK message, then the client sends in ack message. In a SYN flood, the server is being bombarded with the SYN packets. The server is sending back SYN-ACK packets but the attacker is not sending ack messages. This means that the connection stays open and is taking up the service resources. Other users will be unable to connect to the server which is a big problem. Since the TCP connection is half-open, we also refer to SYN floods as half-open attacks.
+
+        DDoS: Distributed Denial-of-Service attack, a DoS attack using multiple systems. DDoS attacks need a large volume of systems to carry out an attack and they're usually helped by botnet attackers. In that scenario, they can gain access to large volumes of machines to perform an attack.
+    #
+#
+
+#Other Attacks
+
+    #Client-Side Attacks
+
+        Injection attacks: A common security exploit that can occur in software development and runs rampant on the web is the possibility for an attacker to inject malicious code. Injection attacks can be mitigated with good software development principles, like validating input and sanitizing data.
+
+        Cross-site scripting (XSS) attack: Cross-site scripting, or XSS attacks, are a type of injection attack where the attacker can insert malicious code and target the user of the service. XSS attacks are a common method to achieve a session hijacking. It would be as simple as embedding a malicious script in a website, and the user unknowingly executes the script in their browser. The script could then do malicious things like steal a victims cookies and have access to a log in to a website.
+        SQL injection attack: Unlike an XSS that targets a user, a SQL injection attack targets the entire website if the website is using a SQL database. Attackers can potentially run SQL commands that allow them to delete website data, copy it, and run other malicious commands.
+    #
+
+    #Password Attacks
+
+        Password attacks: Utilize software like password-cracker that try and guess your password. A common password attacks are- brute force attack and dictionary attack.
+    #
+
+    #Deceptive Attacks
+        Social Engineering: Social engineering is a kind of con game where attackers use deceptive techniques to gain access to personal information. They then try to have a user execute something, and basically scam a victim into doing that thing.
+
+        Phishing attack:  A popular type of social engineering attack is a phishing attack. Phishing usually occurs when a malicious email is sent to a victim disguised as something legitimate. One common phishing attack is an email, saying your bank account has been compromised. And then, gives you a link to click on to reset your password. When you go to the link, it looks like your bank's website but it's actually a fake website. So you're tricked into entering your current password and credentials in order to reset your current password.
+
+        Spear phishing:  Another variation of phishing is spear phishing. Both phishing schemes have the same end goals, but spearfishing specifically targets individual or group. The fake emails may contain some personal information like your name, or the names of friends or family. So they seem more trustworthy. 
+
+        Email spoofing:  Another popular social engineering attack is email spoofing. Spoofing is when a source is masquerading around as something else. Think of an email spoof. This is what happens when you receive an email with a misleading sender address. You can send an email and have it appear to come from anywhere you want, whether it exists or not. 
+
+        Baiting: In fact, one attack happens through actual physical contact. This is called baiting, which is used to entice a victim to do something. For example, an attacker could just leave a USB drive somewhere in hopes that someone out there will plug it into their machine to see what's on it. But they've just installed malware on the machine without even knowing it. 
+
+        Tailgating: Another popular attack that can occur offline is called tailgating, which is essentially gaining access into a restricted area or building by following a real employee in. 
+    #
+#
