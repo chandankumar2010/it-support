@@ -1,4 +1,4 @@
-# it-support
+# Google IT Support Professional Certificate
 
 Notes and projects from Google IT Support Professinal Certificate by Google on Coursera.
 
