@@ -1,6 +1,6 @@
 # Google IT Support Professional Certificate
 
-Notes and projects from Google IT Support Professinal Certificate by Google on Coursera.
+Notes and projects from Google IT Support Professional Certificate by Google on Coursera.
 
 Course link: https://www.coursera.org/specializations/google-it-support
 
