@@ -1,0 +1,414 @@
+#Symmetric Encryption
+    #Cryptography
+
+        Basic Terminologies:
+            
+            Encryption: The act of taking a message, called plaintext, and applying an operation to it, called a cipher, so that you receive a garbled, unreadable message as the output, called ciphertext.
+
+            Cipher: A cipher is usually made up of two components, Encryption Algorithm and Key
+
+            Encryption algorithm: The underlying logic of process that's used to convert the plaintext into ciphertext.
+
+            Key:  It is used to introduce something unique in our cipher thus preventing anyone from decrypting our ciphertext using the same algorithm.
+
+            Security through obscurity: It means if we are able to hide the encryption algorithm or general security practice then we're safe from attackers.
+
+            Kerchoff's' principle: This principle states that a cryptosystem or a collection of algorithms for key generation and encryption and decryption operations that compromise a Cryptographic service should remain secure- even if everything about the system is known, except the key.
+
+            Shannon's maxim or "The enemy knows the system": The system should remain secure even if your adversary knows exactly what kind of encryption system you're employing, as long as your keys remain secure.
+
+            Cryptography : The practice of coding and hiding messages from third party is called Cryptography. 
+
+            Cryptology: The study of this practice is referred to as Cryptology.
+
+            Cryptanalysis: The opposite to Cryptography, the practice of deciphering coded messages.
+
+            Frequency analysis: The practice of studying the frequency with which letters appear in a ciphertext.
+
+            Steganography: The practice of hiding information from observers, but not encoding it.
+        #
+    #
+
+    #Supplement Reading: 
+        It's been said that the advent of modern computing has spelled the death of the field of cryptanalysis; but the practice is still alive and well -- it's the methodology that's changed as technology has transformed the landscape. As quantum computing continues to develop, there're concerns that modern encryption could be at risk of being broken. This is because most modern encryption algorithms are based on large prime number factorization <https://en.wikipedia.org/wiki/Integer_factorization>  being computationally difficult, something that can be significantly sped up by quantum computing. Because of this, quantum computing would allow for significantly faster factorization and brute-force attacks on encryption keys, making the future of modern cryptography questionable in the looming quantum computing era.
+    #
+
+    #Symmetric Cryptology
+
+        Symmetric-key algorithm: 
+            An algorithm that uses same key for encryption and decryption. Ex: Caesar Cipher, a Symmetric-key algorithm that uses substitution of alphabets.
+
+        A simple encryption mechanism is a substitution cipher, which replaces parts of plaintext with ciphertext:
+
+        E = O
+
+        O = Y
+
+        "Hello World" becomes "Holly Wyrld."
+
+        A popular substitution cipher is known as the Caesar Cipher, where characters in the alphabet are replaced with others, usually by shifting the entire alphabet a certain number of letters—making that the key. If someone learns that key, they can easily decrypt and encrypt messages.
+
+        A Caesar cipher that uses a key of 13 is referred to as ROT13, and would work like this:
+
+        "HELLO WORLD" – – > ROT13 – – > "URYYB JBEYQ"
+
+            Two categories of Symmetric-key ciphers:
+                1)Block 2)Stream
+            
+                Block Cipher: The cipher takes data in, places it into a bucket or block of data that's a fixed size, then encodes that entire block as one unit. If the data to be encrypted isn't enough to fill the block, the extra space will be padded to ensure the plaintext fits into the blocks evenly.
+
+                Stream Cipher: Takes a stream of input and encrypts the stream one character or digit at a time, outputting one encrypted character or digit at a time.
+            
+            Stream ciphers are faster and less complex than block but are less secure than block ciphers.
+            If same key is used to encrypt data two or more times, it's possible to break the cipher and to recover the plaintext.
+            
+            IV(Initialization Vector): To avoid key reuse an IV(Initialization Vector) is used. It's a bit of random data that's integrated into the encryption key and the resulting combined key is than used to encrypt the data.
+
+            The idea behind this is if you have one shared master key, then generate a one-time encryption key. That encryption key is used only once by generating a new key using the master one and the IV. In order for the encrypted message to be decoded, the IV must be sent in plaintext along with the encrypted message. A good example of this can be seen when inspecting the 802.11 frame of a WEP encrypted wireless packet. The IV is included in plaintext right before the encrypted data payload.  
+
+        
+    #
+
+    #Symmetric-Encryption Algorithms
+         DES: Data Encryption Standard, designed by IBM in 1970s with some input from the US National Security Agency. DES was adopted as an official FIPS, Federal Information Processing Standard for the US. This means that DES was adopted as a federal standard for encrypting and securing government data. DES is a symmetric block cipher that uses 64-bit key sizes and operates on blocks 64-bits in size. Though the key size is technically 64-bits in length, 8-bits are used only for parity checking, a simple form of error checking. This means that real world key length for DES is only 56-bits.
+
+         Key-length: In symmetric encryption algorithms, the same key is used to encrypt as to decrypt, everything else being the same. The key is the unique piece that protects your data and the symmetric key must be kept secret to ensure the confidentiality of the data being protected. The key size, defined in bits, is the total number of bits or data that comprises the encryption key. So you can think of the key size as the upper limit for the total possible keys for a given encryption algorithm. Key length is super important in cryptography since it essentially defines the maximum potential strength of the system.
+
+         Example: DES has 64 bits - 8 bit parity bits, 56-bits key length. This means there are maximum 2^56 possible keys. This was huge in 1970s, but it's too small as per today's computing standards.
+
+         In 1998 EFF, Electronic Frontier Foundation, decrypted DES-encrypted message in 56-hours.
+
+         AES: Advanced Encryption Standard, In 1997, the NIST, National Institute of Standards and Technology, wanted to replace DES with a new algorithm, and in 2001, adopted AES, Advanced Encryption Standard, after an international competition. AES is also the first and only public cipher that's approved for use with top secret information by the United States National Security Agency. AES is also a symmetric block cipher similar to DES in which it replaced. But AES uses 128-bit blocks, twice the size of DES blocks, and supports key lengths of 128-bit, 192-bit, or 256-bit. Because of the large key size, brute-force attacks on AES are only theoretical right now, because the computing power required (or time required using modern technology) exceeds anything feasible today.
+
+         RC4: RC4, or Rivest Cipher 4, is a symmetric stream cipher that gained widespread adoption because of its simplicity and speed. RC4 supports key sizes from 40-bits to 2,048-bits. So the weakness of RC4 aren't due to brute-force attacks, but the cipher itself has inherent weaknesses and vulnerabilities that aren't only theoretically possible, there are lots of examples showing RC4 being broken. A recent example of RC4 being broken is the RC4 NOMORE attack.
+
+         As this is an attack on the RC4 cipher itself, any protocol that uses this cipher is potentially vulnerable to the attack. Even so, RC4 was used in a bunch of popular encryption protocols, like WEP for wireless encryption, and WPA, the successor to WEP. It was also supported in SSL and TLS until 2015 when RC4 was dropped in all versions of TLS because of inherent weaknesses. For this reason, most major web browsers have dropped support for RC4 entirely, along with all versions of SSL, and use TLS instead. The preferred secure configuration is TLS 1.2 with AES GCM, a specific mode of operation for the AES block cipher that essentially turns it into a stream cipher.
+
+         GCM: GCM, or Galois/Counter Mode, works by taking randomized seed value, incrementing this and encrypting the value, creating sequentially numbered blocks of ciphertexts. The ciphertexts are then incorporated into the plain text to be encrypted. GCM is super popular due to its security being based on AES encryption, along with its performance, and the fact that it can be run in parallel with great efficiency.
+    #
+
+    Supplement Reading: http://www.rc4nomore.com/
+#
+
+#Public Key or Asymmetric Encryption
+    #Asymmetric Cryptography
+
+        Symmetric ciphers use the same key to encrypt and decrypt. Asymmetric ciphers use different keys.
+
+        Two parties that want to communicate using asymmetric encryption will first create a private key, which will be used to generate a public key. Once these public/private key pairs have been created for each party, they will exchange public keys.
+
+        Person A in this arrangement will use Person B's public key to encrypt a message and send it to Person B, who will use their private key to decrypt. In response, Person B can encrypt messages using Person A's public key, and only Person A will be able to decrypt by using their private key.
+
+        Another useful feature of this kind of system is the public key signature, which is generated by combining the message and the private key to create a special code which will validate the message.
+
+        Asymmetric encryption systems grant:
+
+        Confidentiality: through encryption/decryption
+        
+        Authenticity: digital signature mechanism
+        
+        Non-repudiation: the author cannot dispute the origin 
+
+        Asymmetric encryption is more secure, but more complex and computationally complex than symmetric systems. Some security solutions use both symmetric and asymmetric encryption for different functions.
+
+        A final item related to asymmetric encryption are Message Authentication Codes (MACs). A MAC is "a bit of information that allows authentication of a received message," which ensures the message came from the alleged sender.
+
+        HMAC is a keyed-hash message authentication code, and is sent along with the coded message, and verified by the recipient.
+
+        CMACs are cipher-based message authentication codes, which use a symmetric cipher with a shared key is used to encrypt the message and the output of that is used as a MAC.
+
+        A popular CMAC is the CBC-MAC, or cipher block-chaining MAC. This uses block ciphers to encrypt a message in CBC mode¸ which incorporates a previously encrypted block into the next block's plaintext, creating a "chain." This means that any modification to aby block will create discrepancies in every resulting block.
+    #
+
+    #Asymmetric Encryption Algorithms
+        RSA: one of the first practical asymmetric cryptography systems to be developed is RSA, name for the initials of the three co-inventors. Ron Rivest, Adi Shamir and Leonard Adleman. This crypto system was patented in 1983 and was released to the public domain by RSA Security in the year 2000. The RSA system specifies mechanisms for generation and distribution of keys along with encryption and decryption operation using these keys. The key generation process depends on choosing two unique, random, and usually very large prime numbers.
+
+        DSA: Digital Signature Algorithm, is another example of an asymmetric encryption system, though its used for signing and verifying data. It was patented in 1991 and is part of the US government's Federal Information Processing Standard. Similar to RSA, the specification covers the key generation process along with the signing and verifying data using the key pairs. It's important to call out that the security of this system is dependent on choosing a random seed value that's incorporated into the signing process. If this value was leaked or if it can be inferred if the prime number isn't truly random, then it's possible for an attacker to recover the private key.
+
+        This actually happened in 2010 to Sony with their PlayStation 3 game console. It turns out they weren't ensuring this randomized value was changed for every signature. This resulted in a hacker group called failOverflow being able to recover the private key that Sony used to sign software for their platform. This allowed modders to write and sign custom software that was allowed to run on the otherwise very locked down console platform. This resulted in game piracy becoming a problem for Sony, as this facilitated the illicit copying and distribution of games which caused significant losses in sales.
+
+        DH: Diffie-Hellman, another popular key exchange algorithm is DH or Diffie-Hellman named for the co-inventors. Let's assume we have two people who would like to communicate over an unsecured channel, and let's call them Suzanne and Daryll.First, Suzanne and Daryl agree on the starting number that would be random and will be very large integer. This number should be different for every session and doesn't need to be secret. Next, each person chooses another randomized large number but this one is kept secret. Then, they combine their shared number with their respective secret number and send the resulting mix to each other. Next, each person combines their secret number with the combined value they received from the previous step. The result is a new value that's the same on both sides without disclosing enough information to any potential eavesdroppers to figure out the shared secret. This algorithm was designed solely for key exchange, though there have been efforts to adapt it for encryption purposes. It's even been used as part of a PKI system or Public Key Infrastructure system.
+
+        ECC: Elliptic Curve Cryptography, is a public key encryption system that uses the algebraic structure of elliptic curves over finite fields to generate secure keys. traditional public key systems, make use of factoring large prime numbers whereas ECC makes use of elliptic curves. And elliptic curve is composed of a set of coordinates that fit in equation, similar to something like Y to the second equals X to the third, plus A X plus B(y^2=x^3+ax+b). Elliptic curves have a couple of interesting and unique properties. One is horizontal symmetry, which means that at any point in the curve can be mirrored along the x axis and still make up the same curve. On top of this, any non-vertical line will intersect the curve in three places at most. Its this last property that allows elliptic curves to be used in encryption. The benefit of elliptic curve based encryption systems is that they are able to achieve security similar to traditional public key systems with smaller key sizes. So, for example, a 256 bit elliptic curve key, would be comparable to a 3,072 bit RSA key. This is really beneficial since it reduces the amount of data needed to be stored and transmitted when dealing with keys. Both Diffie-Hellman and DSA have elliptic curve variants, referred to as ECDH and ECDSA, respectively. The US NEST recommends the use of EC encryption, and the NSA allows its use to protect up the top secret data with 384 bit EC keys. But, the NSA has expressed concern about EC encryption being potentially vulnerable to quantum computing attacks, as quantum computing technology continues to evolve and mature.
+    #
+
+    #Supplement Reading: 
+        An asymmetric encryption attack happened in 2010 to Sony with their Playstation 3<https://nakedsecurity.sophos.com/2012/10/25/sony-ps3-hacked-for-good-master-keys-revealed/> game console. It turns out they weren’t ensuring the randomized seed value was changed for every signature. This resulted in a hacker group called 'fail0verflow' being able to recover the private key that Sony used to sign software for the platform. This allowed modders to write and sign custom software that was allowed to run on the otherwise very locked down console platform. This resulted in game piracy<https://www.theguardian.com/technology/gamesblog/2011/jan/07/playstation-3-hack-ps3> becoming a problem for Sony, as this facilitated the illicit copying and distribution of games, causing a significant loss in sales.
+    #
+#
+
+#Hashing
+    
+    #Hashing(or a hash function): 
+        A type of function or operation that takes in an arbitrary data input and maps it to an output of fixed size, called a hash or digest.
+
+        [N-Data] -> [Hash Function] -> [Hash Value]
+
+        The output size if usually specified in bits of data and is often included in the hashing function. This means that we can feed data of any amount into a hash function and the resulting output will always be of the same size. But the output should be unique to the input,such that two different inputs should never yield the same output. Hash functions have a large number of applications in computing in general, typically used to uniquely identify data. You may have heard the term hash table before in context of software engineering. This is a type of data structure that uses hashes to accelerate data lookups. Hashing can also be used to identify duplicate data sets in databases or archives to speed up searching of tables or to remove duplicate data to save space. Depending on the application, there are various properties that may be desired, and a variety of hashing functions exist for various applications. We're primarily concerned with cryptographic hash functions which are used for various applications like authentication, message integrity, fingerprinting, data corruption detection and digital signatures.
+
+        Cryptographic hashing:
+        Cryptographic hashing is distinctly different from encryption because cryptographic hash functions should be one directional. They're similar in that you can input plain text into the hash function and get output that's unintelligible but you can't take the hash output and recover the plain text.
+
+        The ideal cryptographic hash function should be deterministic, meaning that the same input value should always return the same hash value. The function should be quick to compute and be efficient. It should be infeasible to reverse the function and recover the plain text from the hash digest.A small change in the input should result in a change in the output so that there is no correlation between the change in the input and the resulting change in the output.Finally, the function should not allow for hash collisions.
+
+        Hash Collisions: Two different inputs mapping to the same output.
+
+        Cryptographic hash functions are very similar to symmetric key block ciphers and that they operate on blocks of data. In fact, many popular hash functions are actually based on modified block ciphers.
+
+        Demonstration if an imaginary hash function:
+
+        "Hello World" | [hash function] | E49A00FF
+
+        Every time we feed this string into our function, we get the same hash digest output.
+
+        Now let's modify the input very slightly:
+        "hello world" | [hash function] | FF1832AE
+
+        Here is the same example but using a real hash function, in this case md5sum
+
+        $ echo 'Hello World' | md5sum
+        e59ff97941044f85df5297e1c302d260
+
+        $ echo 'hello world' | md5sum
+        6f5902ac237024bdd0c176cb93063dc4
+    #
+
+    #Hashing Algorithms
+        MD5:
+            MD5 is a popular and widely used hash function designed in the early 1990s as a cryptographic hashing function. It operates on a 512 bit blocks and generates 128 bit hash digests. While MD5 was published in 1992, a design flaw was discovered in 1996, and cryptographers recommended using the SHA-1 hash, a more secure alternative. But, this flaw was not deemed critical, so the hash function continued to see widespread use and adoption. In 2004, it was discovered that MD5 is susceptible to hash collisions, allowing for a bad actor to craft a malicious file that can generate the same MD5 digest as another different legitimate file.
+            Shortly after this flaw was discovered, security researchers were able to generate two different files that have matching MD5 hash digests. In 2008, security researchers took this a step further and demonstrated the ability to create a fake SSL certificate, that validated due to an MD5 hash collision. Due to these very serious vulnerabilities in the hash function, it was recommended to stop using MD5 for cryptographic applications by 2010. In 2012, this hash collision was used for nefarious purposes in the flame malware, which used the forge Microsoft digital certificate to sign their malware, which resulted in the malware appearing to be from legitimate software that came from Microsoft.
+
+        SHA1: Secure Hash Algorithm
+            When design flaws were discovered in MD5, it was recommended to use SHA-1 as a replacement. SHA-1 is part of the secure hash algorithm suite of functions, designed by the NSA and published in 1995. It operates a 512 bit blocks and generates 160 bit hash digest. SHA-1 is another widely used cryptographic hashing functions, used in popular protocols like TLS/SSL, PGP SSH, and IPsec. SHA-1 is also used in version control systems like Git, which uses hashes to identify revisions and ensure data integrity by detecting corruption or tampering. SHA-1 and SHA-2 were required for use in some US government cases for protection of sensitive information. Although, the US National Institute of Standards and Technology, recommended stopping the use of SHA-1 and relying on SHA-2 in 2010. Many other organizations have also recommended replacing SHA-1 with SHA-2 or SHA-3. And major browser vendors have announced intentions to drop support for SSL certificates that use SHA-1 in 2017. SHA-1 also has its share of weaknesses and vulnerabilities, with security researchers trying to demonstrate realistic hash collisions. During the 2000s, a bunch of theoretical attacks were formulated and some partial collisions were demonstrated, but full collisions using these methods requires significant computing power.
+
+            SHA1 Attacks:
+
+            One such attack was estimated to require $2.77 million in cloud computing CPU resources. In 2015, a different attack method was developed that didn't demonstrate a full collision but this was the first time that one of these attacks was demonstrated which had major implications for the future security of SHA-1. What was only theoretically possible before, was now becoming possible with more efficient attack methods and increases in computing performance, especially in the space of GPU accelerated computations in cloud resources. A full collision with this attack method was estimated to be feasible using CPU and GPU cloud computing for approximately $75 to $120,000 , much cheaper than previous attacks.n early 2017, the first full collision of SHA-1 was published. Using significant CPU and GPU resources, two unique PDF files were created that result in the same SHA-1 hash. The estimated processing power required to do this was described as equivalent of 6,500 years of a single CPU, and 110 years of a single GPU computing non-stop.
+
+        MIC:
+            There's also the concept of a MIC, or message integrity check. This shouldn't be confused with a MAC or message authentication check, since how they work and what they protect against is different. A MIC is essentially a hash digest of the message in question. You can think of it as a check sum for the message, ensuring that the contents of the message weren't modified in transit. But this is distinctly different from a MAC that we talked about earlier. It doesn't use secret keys, which means the message isn't authenticated. There's nothing stopping an attacker from altering the message, recomputing the checksum, and modifying the MIC attached to the message. You can think of MICs as protecting against accidental corruption or loss, but not protecting against tampering or malicious actions.        
+    #
+
+    #Supplement Reading for SHA1 attacks:
+        During the 2000s, a bunch of theoretical attacks<https://eprint.iacr.org/2005/010> against SHA1 were formulated<https://www.schneier.com/blog/archives/2005/02/sha1_broken.html> and some partial collisions<https://eprint.iacr.org/2007/474> were demonstrated. In early 2017, the first full collision<https://shattered.io/> of SHA1<https://shattered.io/> was published.
+    #
+
+    #Hashing Algorithms(continued)
+        
+        One crucial application for cryptographic hash functions is for authentication.
+        When you log into your e-mail account the password you entered is run through the hashing function and then the resulting hash digest is compared against the hash on file. If the hashes match, then we know the password is correct, and you're authenticated. Password shouldn't be stored in plain text because if your systems are compromised, passwords for other accounts are ultimate prize for the attacker. If an attacker manages to gain access to your system and can just copy the database of accounts and passwords, this would obviously be a bad situation. By only storing password hashes, the worst the attacker would be able to recover would be password hashes, which aren't really useful on their own.
+
+        What if the attacker wanted to figure out what passwords correspond to the hashes they stole? They would perform a brute force attack against the password hash database. This is where the attacker just tries all possible input values until the resulting hash matches the one they're trying to recover the plain text for. Once there's a match, we know that the input that's generated that matches the hash is the corresponding password. As you can imagine, a brute force attack can be very computationally intensive depending on the hashing function used. An important characteristic to call out about brute force attacks is, technically, they're impossible to protect against completely. A successful brute force attack against even the most secure system imaginable is a function of attacker time and resources. If an attacker has unlimited time and or resources any system can be brute force. The best we can do to protect against these attacks, is to raise the bar. Make it sufficiently time and resource intensive so that it's not practically feasible in a useful timeframe or with existing technology. Another common method to help raise the computational bar and protect against brute force attacks is to run the password through the hashing function multiple times, sometimes through thousands of interactions. This would require significantly more computations for each password guess attempt. 
+
+        Rainbow Tables:
+            These tables are used by bad actors to help speed up the process of recovering passwords from stolen password hashes. A rainbow table is just a pre-computed table of all possible password values and their corresponding hashes. The idea behind rainbow table attacks is to trade computational power for disk space by pre-computing the hashes and storing them in a table. An attacker can determine what the corresponding password is for a given hash by just looking up the hash in their rainbow table. This is unlike a brute force attack where the hash is computed for each guess attempt. It's possible to download rainbow tables from the internet for popular password lists and hashing functions. This further reduces the need for computational resources requiring large amounts of storage space to keep all the password and hash data. You may be wondering how you can protect against these pre-computed rainbow tables. That's where salts come into play.
+
+        Password salts:
+            A password salt is additional randomized data that's added into the hashing function to generate the hash that's unique to the password and salt combination. 
+            
+            Here's how it works:
+
+                [Password][Salt] -> [Hash Function] -> [Salt][Hash Value]
+            
+            A randomly chosen large salt is concatenated or tacked onto the end of the password. The combination of salt and password is then run through the hashing function to generate hash which is then stored alongside the salt.
+
+            What this means now for an attacker is that they'd have to compute a rainbow table for each possible salt value. If a large salt is used, the computational and storage requirements to generate useful rainbow tables becomes almost unfeasible. Early Unix systems used a 12 Bit salt, which amounts to a total of 4,096 possible salts. So, an attacker would have to generate hashes for every password in their database, 4,096 times over. Modern systems like Linux, BSD and Solaris use a 128 bit salt. That means there are 2^128 possible salt values, which is over 340 undecillion. That's 340 with 36 zeros following. Clearly, 128 bit salt raises the bar high enough that a rainbow table attack wouldn't be possible in any realistic time-frame.
+
+
+    #
+#
+
+#Cryptography applications
+   #PKI: Public Key Infrastructure
+        PKI is a critical piece to securing communication on the internet today. PKI is a system that defines creation,storage and distribution of digital certificates. A digital certificate is a file that proves that an entity owns a certain public key. A digital certificate contains information about the public key, the entity it belongs to and a digital signature from a authority that has verified this information.If the signature is valid and we trust  the entity that signed the certificate, then we can trust the public key to be used to securely communicate with the entity that owns it. 
+
+        CA: Certificate authority
+            The entity that's responsible for storing, issuing, and signing certificates is referred to as CA, or Certificate Authority. It's a crucial component of the PKI system.
+    
+        RA: Registration Authority
+            responsible for verifying the identities of any entities requesting certificates to be signed and stored with the CA. This role is usually lumped together with the CA.
+
+        A central repository is needed to securely store and index keys and a certificate management system of some sort makes managing access to storage certificates and issuance of certificates easier.
+        
+        SSL/TLS Server Certificates:
+            This is a certificate that a web server presents to a client as part of the initial secure setup of an SSL/TLS connection. The client usually a web browser will then verify that the subject of the certificate matches the host name of the server the client is trying to connect to. The client will also verify that the certificate is signed by a certificate authority that the client trusts. It's possible for a certificate to be valid for multiple host names. In some cases, a wild card certificate can be issued where the host name is replaced with an asterisk, denoting validity for all host names within a domain. It's also possible for a server to use what's called a Self Sign Certificate. You may have guessed from the name. This certificate has been signed by the same entity that issued the certificate. This would basically be signing your own public key using your private key. Unless you already trusted this key, this certificate would fail to verify.
+
+        SSl/TLS Client Certificate:
+            Another certificate type is an SSL/TLS client certificate. This is an optional component of SSL/TLS connections and is less commonly seen than server certificates. As the name implies, these are certificates that are bound to clients and are used to authenticate the client to the server, allowing access control to a SSL/TLS service. These are different from server certificates in that the client certificates aren't issued by a public CA. Usually the service operator would have their own internal CA which issues and manages client  certificates for their service.
+
+        Code Signing Certificates:
+            Code signing certificates are used for signing executable programs. This allows users of these signed applications to verify the signatures and ensure that the application was not tampered with. It also lets them verify that the application came from the software author and is not a malicious twin.
+    
+        Certificate Authority Trust:
+            PKI is very much dependent on trust relationships between entities, and building a network or chain of trust. This chain of trust has to start somewhere and that starts with the Root Certificate Authority. These root certificates are self signed because they are the start of the chain of trust. So there's no higher authority that can sign on their behalf. This Root Certificate Authority can now use the self-signed certificate and the associated private key to begin signing other public keys and issuing certificates. It builds a sort of tree structure with the root private key at the top of the structure. If the root CA signs a certificate and sets a field in the certificate called CA to true, this marks a certificate as an intermediary or subordinate CA. What this means is that the entity that this certificate was issued to can now sign other certificates. And this CA has the same trust as the root CA. An intermediary CA can also sign other intermediate CAs. You can see how this extension of trust from one root CA to intermediaries can begin to build a chain. A certificate that has no authority as a CA is referred to as an End Entity or Leaf Certificate. Similar to a leaf on a tree, it's the end of the tree structure and can be considered the opposite of the roots.
+
+        Chain Of Trust:
+            In order to bootstrap this chain of trust, you have to trust a root CA certificate, otherwise the whole chain is untrusted. This is done by distributing root CA certificates via alternative channels. Each major OS vendor ships a large number of trusted root CA certificates with their OS. And they typically have their own programs to facilitate distribution of root CA certificates. Most browsers will then utilize the OS provided store of root certificates.
+        
+        X.509 Standard
+            The X.509 standard is what defines the format of digital certificates. It also defines a certificate revocation list or CRL which is a means to distribute a list of certificates that are no longer valid. The X.509 standard was first issued in 1988 and the current modern version of the standard is version 3. The fields defined in X.509 certificate are-
+            i) Version: what version of the X.509 standard certificate adheres to.
+
+            ii) Serial Number: a unique identifier for their certificate assigned by the CA which allows the CA to  manage and identify individual certificates.
+
+            iii) Certificate Signature Algorithm: this field indicates what public key algorithm is used for the public key and what hashing algorithm is used to sign the certificate.
+
+            iv) Issuer Name: this field contains information about the authority that signed the certificate.
+
+            v) Validity: this contains two subfields, Not Before and Not After, which define the dates when the certificate is valid for.
+
+            vi) Subject: this field contains identifying information about the entity the certificate was issued to.
+
+            vii) Subject Public Key Info: these two subfields define the algorithm of the public key along with the public key itself.
+
+            viii)Certificate signature algorithm, same as the Subject Public Key Info field, these two fields must match.
+
+            viii) Certificate Signature Value: the digital signature data itself.
+        
+        Certificate fingerprints
+            certificate fingerprints which aren't actually fields in the certificate itself, but are computed by clients when validating or inspecting certificates. These are just hash digests of the whole certificate.
+
+        Web Of Trust:
+            An alternative to the centralized PKI model of establishing trust and binding identities.
+
+            A Web of Trust is where individuals instead of certificate authorities sign other individuals' public keys. Before an individual signs a key, they should first verify the person's identity through an agreed upon mechanism. Usually by checking some form of identification, driver's license, passport, etc. Once they determine the person is who they claim to be, signing their public key is basically vouching for this person. You're saying that you trust that this public key belongs to this individual. This process would be reciprocal, meaning both parties would sign each other's keys. Usually people who are interested in establishing web of trust will organize what are called Key Signing Parties where participants performed the same verification and signing. At the end of the party everyone's public key should have been signed by every other participant establishing a web of trust. In the future when one of these participants in the initial key signing party establishes trust with a new member, the web of trust extends to include this new member and other individuals they also trust. This allows separate webs of trust to be bridged by individuals and allows the network of trust to grow.
+    
+        Supplement Reading: X.509 standard- The X.509 standard <https://www.ietf.org/rfc/rfc5280.txt> is what defines the format of digital certificates.
+    #
+
+    #Cryptography in Action:
+        HTTPS:
+            HTTPS is the secure version of the HTTP protocol. HTTPS can also be called HTTP over SSL/TLS, since it's essentially encapsulating the HTTP traffic over an encrypted, secured channel utilizing SSL/TLS.
+        
+        SSL/TLS:
+            You might hear SSL and TLS used interchangeably, but SSL 3.0, the latest revision of SSL, was deprecated in 2015, and TLS 1.2 is the current recommended revision, with version 1.3 still in the works. Now, it's important to call out that TLS is actually independent of HTTPS, and is actually a generic protocol to permit secure communications and authentication over a network. TLS is also used to secure other communications aside from web browsing, like VoIP calls such as Skype or Hangouts, email, instant messaging, and even Wi-Fi network security. 
+            
+            TLS grants us three things:
+            
+                i) A secure communication line, which means data being transmitted is protected from potential eavesdroppers. 
+                
+                ii) The ability to authenticate both parties communicating, though typically, only the server is authenticated by the client. 
+                
+                iii) The integrity of communications, meaning there are checks to ensure that messages aren't lost or altered in transit. 
+                
+                TLS essentially provides a secure channel for an application to communicate with a service, but there must be a mechanism to establish this channel initially. This is what's referred to as a TLS handshake.
+        
+        TLS handshake:
+            The handshake process kicks off with a client establishing a connection with a TLS enabled service, referred to in the protocol as ClientHello. This includes information about the client, like the version of the TLS that the client supports, a list of cipher suites that it supports, and maybe some additional TLS options.
+
+            The server then responds with a ServerHello message, in which it selects the highest protocol version in common with the client, and chooses a cipher suite from the list to use. It also transmits its digital certificate and a final ServerHelloDone message.
+
+            The client will then validate the certificate that the server sent over to ensure that it's trusted and it's for the appropriate host name. Assuming the certificate checks out, the client then sends a ClientKeyExchange message. This is when the client chooses a key exchange mechanism to securely establish a shared secret with the server, which will be used with a symmetric encryption cipher to encrypt all further communications. The client also sends a ChangeCipherSpec message indicating that it's switching to secure communications now that it has all the information needed to begin communicating over the secure channel. This is followed by an encrypted Finished message which also serves to verify that the handshake completed successfully.
+            
+            The server replies with a ChangeCipherSpec and an encrypted Finished message once the shared secret is received. Once complete, application data can begin to flow over the now the secured channel.
+
+        Session Key:
+            The session key is the shared symmetric encryption key using TLS sessions to encrypt data being sent back and forth. Since this key is derived from the public-private key, if the private key is compromised, there's potential for an attacker to decode all previously transmitted messages that were encoded using keys derived from this private key. To defend against this, there's a concept of forward secrecy. This is a property of a cryptographic system so that even in the event that the private key is compromised, the session keys are still safe.
+        
+        Forward Secrecy:
+            Forward secrecy protects past sessions against future compromises of secret keys or passwords.By generating a unique session key for every session a user initiates, even the compromise of a single session key will not affect any data other than that exchanged in the specific session protected by that particular key.
+
+        SSH: Secure Shell
+            The SSH, or secure shell, is a secure network protocol that uses encryption to allow access to a network service over unsecured networks. Most commonly, you'll see SSH use for remote login to command line base systems, but the protocol is super flexible and has provisions for allowing arbitrary networks and traffic over those ports to be tunnelled over the encrypted channel. It was originally designed as a secure replacement for the Telnet protocol and other unsecured remote login shell protocols like rlogin or r-exec. It's very important that remote login and shell protocols use encryption. Otherwise, these services will be transmitting usernames and passwords, along with keystrokes and terminal output in plain text. This opens up the possibility for an eavesdropper to intercept credentials and keystrokes. SSH uses public key cryptography to authenticate the remote machine that the client is connecting to, and has provisions to allow user authentication via client certificates, if desired. The SSH protocol is very flexible and modular, and supports a wide variety of different key exchange mechanisms like Diffie-Hellman, along with a variety of symmetric encryption ciphers. It also supports a variety of authentication methods, including custom ones that you can write.
+            When using public key authentication, a key pair is generated by the user who wants to authenticate. They then must distribute those public keys to all systems that they want to authenticate to using the key pair. When authenticating, SSH will ensure that the public key being presented matches the private key, which should never leave the user's possession
+
+        PGP: Pretty Good Privacy
+            PGP stands for Pretty Good Privacy.PGP is an encryption application that allows authentication of data along with privacy from third parties relying upon asymmetric encryption to achieve this. It's most commonly used for encrypted email communication, but it's also available as a full disk encryption solution or for encrypting arbitrary files, documents, or folders. PGP was developed by Phil Zimmerman in 1991 and it was freely available for anyone to use. The source code was even distributed along with the software. Zimmerman was an anti nuclear activist, and political activism drove his development of the PGP encryption software to facilitate secure communications for other activists. PGP took off once released and found its way around the world, which wound up getting Zimmerman into hot water with the US federal government. At the time, US federal export regulations classified encryption technology that used keys larger than 40 bits in length as munitions. This meant that PGP was subject to similar restrictions as rockets, bombs, firearms, even nuclear weapons. PGP was designed to use keys no smaller than 128-bit, so it ran up against these export restrictions, and Zimmerman faced a federal investigation for the widespread distribution of his cryptographic software. Zimmerman took a creative approach to challenging these restrictions by publishing the source code in a hardcover printed book which was made available widely. The idea was that the contents of the book should be protected by the first amendment of the US constitution. The investigation was eventually closed in 1996 without any charges being filed, and Zimmerman didn't even need to go to court. You can read more about why he developed PGP in the next reading. 
+            PGP is widely regarded as very secure, with no known mechanisms to break the encryption via cryptographic or computational means. It's been compared to military grade encryption. Originally, PGP used the RSA algorithm,but that was eventually replaced with DSA to avoid issues with licensing.
+    #
+
+    #Supplement Reading: 
+        PGP was developed by Phil Zimmermann in 1991<http://www.philzimmermann.com/EN/essays/WhyIWrotePGP.html> and was freely available for anyone to use.
+    #
+
+    #Securing Network Traffic:
+        VPN: Virtual Private Network
+            A VPN is a mechanism that allows you to remotely connect a host or network to an internal private network, passing the data over a public channel, like the Internet. You can think of this as a sort of encrypted tunnel where all of our remote system's network traffic would flow, transparently channelling our packets via the tunnel through the remote private network. A VPN can also be point-to-point, where two gateways are connected via a VPN. Essentially bridging two private networks through an encrypted tunnel. There are a bunch of VPN solutions using different approaches and protocols with differing benefits and trade-offs.
+
+        IPsec: Internet Protocol Security
+            It is a VPN protocol that was designed in conjunction with IPv6. It was originally required to be standards compliant with IPv6 implementations, but was eventually dropped as a requirement. It is optional for use with IPv6. IPsec works by encrypting an IP packet and encapsulating the encrypted packet inside an IPsec packet. This encrypted packet then gets routed to the VPN endpoint where the packet is de-encapsulated and decrypted then sent to the final destination. 
+            IPsec supports two modes of operations, 
+            
+            Transport mode & Tunnel mode.
+
+            Transport mode: When transport mode is used, only the payload of the IP packet is encrypted, leaving the IP headers untouched. Heads up that authentication headers are also used. Header values are hashed and verified, along with the transport and application layers. This would prevent the use of anything that would modify these values, like NAT or PAT.
+            
+            Tunnel mode: In tunnel mode, the entire IP packet, header, payload, and all, is encrypted and encapsulated inside a new IP packet with new headers.
+        
+        L2TP: Layer 2 Tunneling Protocol
+            While not a VPN solution itself, L2TP, or Layer 2 Tunneling Protocol, is typically used to support VPNs. A common implementation of L2TP is in conjunction with IPsec when data confidentially is needed, since L2TP doesn't provide encryption itself. It's a simple tunneling protocol that allows encapsulation of different protocols or traffic over a network that may not support the type of traffic being sent. L2TP can also just segregate and manage the traffic. ISPs will use the L2TP to deliver network access to a customer's endpoint, for example. The combination of L2TP and IPsec is referred to as L2TP IPsec and was officially standardized in ietf RFC 3193. 
+
+            The establishment of an L2TP IPsec connection works by first negotiating an IPsec security association. Which negotiates the details of the secure connection, including key exchange, if used. It can also share secrets, public keys,and a number of other mechanisms.
+            Next, secure communication is established using Encapsulating Security Payload. It's a part of the IPsec suite of protocols, which encapsulates IP packets, providing confidentiality, integrity, and authentication of the packets. Once secure encapsulation has been established, negotiation and establishment of the L2TP tunnel can proceed. L2TP packets are now encapsulated by IPsec, protecting information about the private internal network. An important distinction to make in this setup is the difference between the tunnel and the secure channel. The tunnel is provided by L2TP, which permits the passing of unmodified packets from one network to another. The secure channel, on the other hand, is provided by IPsec, which provides confidentiality, integrity, and authentication of data being passed.
+        
+        OpenVPN:
+            SSL/TLS is also used in some VPN implementations to secure network traffic, as opposed to individual sessions or connections. An example of this is OpenVPN, which uses the OpenSSL library to handle key exchange and encryption of data, along with control channels. This also enables OpenVPN to make use of all the cyphers implemented by the OpenSSL library. Authentication methods supported are pre-shared secrets, certificate-based, and username password. Certificate-based authentication would be the most secure option, but it requires more support and management overhead since every client must have a certificate. Username and password authentication can be used in conjunction with certificate authentication, providing additional layers of security. It should be called out that OpenVPN doesn't implement username and password authentication directly. It uses modules to plug into authentication systems.
+            OpenVPN can operate over either TCP or UDP, typically over port 1194. It supports pushing network configuration options from the server to a client and it supports two interfaces for networking. It can either rely on a Layer 3 IP tunnel or a Layer 2 Ethernet tap. The Ethernet tap is more flexible, allowing it to carry a wider range of traffic. From the security perspective, OpenVPN supports up to 256-bit encryption through the OpenSSL library. It also runs in user space, limiting the seriousness of potential vulnerabilities that might be present.
+    #
+
+    #Supplement Reading:
+        The combination of L2TP and IPsec is referred to as L2TP/IPsec and was officially standardized in IETF RFC 3193<https://tools.ietf.org/html/rfc3193>.
+
+        An example of this is OpenVPN<https://openvpn.net/index.php/open-source.html>, which uses the OpenSSL library to handle key exchange and encryption of data along with control channels.
+    #
+
+    #Cryptographic Hardware:
+        TPM: Trusted Platform Module
+            This is a hardware device that's typically integrated into the hardware of a computer, that's a dedicated crypto processor. TPM offers secure generation of keys, random number generation, remote attestation, and data binding and sealing. A TPM has unique secret RSA key burned into the hardware at the time of manufacture, which allows a TPM to perform things like hardware authentication. This can detect unauthorized hardware changes to a system.
+        
+        Remote Attestation:
+            Remote attestation is the idea of a system authenticating its software and hardware configuration to a remote system. This enables the remote system to determine the integrity of the remote system. This can be done using a TPM by generating a secure hash of the system configuration, using the unique RSA key embedded in the TPM itself.
+        
+        Data binding and sealing:
+            It involves using the secret key to derive a unique key that's then used for encryption of data. Basically, this binds encrypted data to the TPM and by extension, the system the TPM is installed in, since only the keys stored in hardware in the TPM will be able to decrypt the data. 
+            Data sealing is similar to binding since data is encrypted using the hardware backed encryption key. But, in order for the data to be decrypted, the TPM must be in a specified state.
+
+        TPM is a standard with several revisions that can be implemented as a discrete hardware chip, integrated into another chip in a system, implemented in firmware software or virtualize in a hypervisor. The most secure implementation is the discrete chip, since these chip packages also incorporate physical tamper resistance to prevent physical attacks on the chip.
+
+        Secure Element:
+            Mobile devices have something similar referred to as a secure element. Similar to a TPM, it's a tamper resistant chip often embedded in the microprocessor or integrated into the mainboard of a mobile device. It supplies secure storage of cryptographic keys and provides a secure environment for applications.
+        
+        TEE: Trusted Execution environment
+            An evolution of secure elements is the Trusted Execution Environment or TEE which takes the concept a bit further. It provides a full-blown isolated execution environment that runs alongside the main OS. This provides isolation of the applications from the main OS and other applications installed there. It also isolates secure processes from each other when running in the TEE.
+
+        Criticism of TPM:
+            TPMs have received criticism around trusting the manufacturer. Since the secret key is burned into the hardware at the time of manufacture, the manufacturer would have access to this key at the time. It is possible for the manufacturer to store the keys that could then be used to duplicate a TPM, that could break the security the module is supposed to provide.
+        
+        Physical Attack on TPM:
+            There's been one report of a physical attack on a TPM which allowed a security researcher to view and access the entire contents of a TPM. But this attack required the use of an electron microscope and micron precision equipment for manipulating a TPM circuitry. While the process was incredibly time intensive and required highly specialized equipment, it proved that such an attack is possible despite the tamper protections in place.
+        
+        TPMs are most commonly used to ensure platform integrity, preventing unauthorized changes to the system either in software or hardware, and full disk encryption utilizing the TPM to protect the entire contents of the disk.
+
+        FDE: Full Disk Encryption
+            Full Disk Encryption or FDE is the practice of encrypting the entire drive in the system. Not just sensitive files in the system. This allows us to protect the entire contents of the disk from data theft or tampering. 
+            Examples- 
+            
+            PGP
+
+            Bitlocker from Microsoft, which integrates very well with TPMs
+
+            Filevault 2 from Apple
+
+            The open source software dm-crypt, which provides encryption for Linux systems. 
+            
+            An FDE configuration will have one partition or logical partition that holds the data to be encrypted. Typically, the root volume, where the OS is installed. But, in order for the volume to be booted, it must first be unlocked at boot time. Because the volume is encrypted, the BIOS can't access data on this volume for boot purposes. This is why FDE configurations will have a small unencrypted boot partition that contains elements like the kernel, bootloader and a netRD. At boot time, these elements are loaded which then prompts the user to enter a passphrase to unlock the disk and continue the boot process. 
+            
+            FDE can also incorporate the TPM, utilizing the TPM encryption keys to protect the disk. And, it has platform integrity to prevent unlocking of the disk if the system configuration is changed. This protects against attacks like hardware tampering, and disk theft or cloning. 
+
+        Random:
+            The selection of random number is very important in encryption, if your number selection process isn't truly random, then there can be some kind of pattern that an adversary can discover through close observation and analysis of encrypted messages over time.
+        
+        Pseudo-random:
+            Something that isn't truly random is referred to as pseudo-random.
+
+        Entropy pool:
+            This is essentially a source of random data to help seed random number generators.
+    #
+    
+    #Supplement Reading:
+        There’s been one report of a physical attack on a TPM<https://gcn.com/Articles/2010/02/02/Black-Hat-chip-crack-020210.aspx> which allowed a security researcher to view and access the entire contents of a TPM.
+
+    #
+
+
+#
