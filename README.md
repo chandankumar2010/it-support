@@ -4,4 +4,4 @@ Notes and projects from Google IT Support Professinal Certificate by Google on C
 
 Course link: https://www.coursera.org/specializations/google-it-support
 
-Additional resource: <link to one drive to be updated>
+Additional resources: <link to one drive to be updated>
