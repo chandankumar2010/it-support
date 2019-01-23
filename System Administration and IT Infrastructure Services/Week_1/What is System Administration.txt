@@ -1,0 +1,170 @@
+Learning Objectives
+Examine the roles and responsibilities of a Systems Administrator.
+
+Differentiate the technical differences between a server and a client machine.
+
+
+
+#What is System Administration
+    #what is system Administration
+        IT infrastructure encompasses the software, the hardware, network, and services required for an organization to operate in an enterprise IT environment. Without an IT infrastructure, employees wouldn't be able to do their jobs and the whole company will crumble before it even get started. So organizations employ the help of someone like a systems administrator to manage the company's IT infrastructure.
+        System administrators or as we like to call them sysadmins, are the unsung heroes in organization. They work in the background to make sure a company's IT infrastructure is always working, constantly fighting to prevent IT disasters from happening.
+        sysadmins have a lot of different responsibilities. Any company that has an IT presence needs a sysadmin or someone who handles those responsibilities. The role of a sysadmin can vary depending on the size of an organization. As an organization gets bigger, you need teams of sysadmins. Their responsibilities may be separated out into different roles with job titles like network administrators and database administrators.
+        Basically, a sysadmin is responsible for their company's I.T. services. Employees need these I.T. services so that they can be productive. This includes things like email, file storage, running a website and more.
+    #
+
+    #Server revisited
+        Server: 
+            A server is essentially software or a machine that provides services to other software or machines. For example, a web server stores and serves content to clients through the Internet. You can access the web server through a domain name like google.com.
+            An email server, provides email service to other machines. And an SSH server provides SSH services to other machines and so on and so forth. We call them machines that use the services provided by a server, clients.
+        
+        Clients
+            Clients request the services from a server and in turn, the servers respond with the services. A server can provide services to multiple clients at once and the client can use multiple servers.
+        
+        Form factor of server
+            Server hardware can come in lots of different forms. They can be towers that sit upright, they look very similar to the desktops we've seen. Those towers can be put in a closet or can sit on the table if you want them to.
+
+            Rack servers which lay flat and are usually mounted in a 90 inch wide server rack.
+
+            Blade: If you needed even more space, you could use blade servers that are even slimmer than racks.
+
+        Connecting to servers
+            SSH: we can SSH to our servers.
+
+            KVM switch: KVM stands for keyboard, video and mouse. A KVM Switch looks like a hub that you can connect multiple computers to and control them using one keyboard, mouse and monitor.
+    #
+
+    #Supplemental reading
+        For more information on KVM switch check out the link here<http://en.wikipedia.org/wiki/KVM_switch>.
+    #
+
+    #The cloud
+        Cloud computing is the concept that you can access your data, use applications, store files, et cetera, from anywhere in the world as long as you have an internet connection.
+        It's just a network of servers that store and process our data.
+
+        Data centers:
+            A data center is a facility that stores hundreds, if not thousands of servers. Companies with large amounts of data have to keep their information stored in places like data centers. Large companies like Google and Facebook usually own their own data centers because they have billions of users that need access to their data at all times. Smaller companies could do this, but usually rent out part of a data center for their needs. When you use the Cloud service, this data is typically stored in the data center or multiple data centers, anywhere that's large enough to hold the information of millions, maybe even billions of users.
+
+            Now instead of holding onto terabytes of storage space on your laptop, you can upload that data to a file storage service like Dropbox, which stores that data in a managed location like a data center. The same goes for your organization. Instead of managing your own servers, you can use internet services that handle everything for you including security updates, server hardware, routine software updates, and more. 
+            
+            But with each of these options come a few drawbacks:
+                The first is cost. When you buy a server, you pay upfront for the hardware. That way, you can set up your services like a file storage at potentially very little cost because you're the one managing it. When you use Internet services like Dropbox, that offer file storage online, the starting cost may be smaller. But in the long term, costs could add up since you're paying a fixed amount every month. When comparing the cost of services, always keep in mind what a subscription could cost you for every user in your organization. Weigh that against maintaining your own hardware in the long term and then make a decision that works best for your organization.
+                
+                The second drawback is dependency. Your data is beholden to these platforms. If there's an issue with the service, someone other than you is responsible for getting it up and running again. That could cost your company precious loss of productivity and data. No matter what method you choose, remember that you're still responsible for the problems that arise when there's an issue. If Dropbox is having an issue with your important user data, it's still your problem and you have to get it working again no matter what. To prevent a situation like that from popping up, you might consider backing up some critical data in the Cloud and on a physical disk. That way, if one system goes down, you have another way to solve the problem.
+    #
+#
+
+#System Administration Tasks
+    #Organizational Policies
+        In a small company, it's usually a sys admin's responsibility to decide what computer policies to use. In larger companies with hundreds of employees or more, this responsibility usually falls under the chief security officer.
+
+        There are few common policy questions that come up in most IT settings that you should know.
+            Should users be allowed to install software?
+                Probably not. You could run the risk of having a user or accidentally install malicious software.
+                
+            Should users have complex passwords with certain requirements?
+                It's definitely a good rule of thumb to create a complex password that has symbols, random numbers, and letters. A good guideline for a password blend is to make sure it has a minimum of 8 characters, that make it more difficult for someone to crack.
+                
+            Should you be able to view non-work related websites like Facebook? 
+                That's a personal call. Some organizations prefer that their employees only use their work computer and network strictly for business, but many allow other uses, so their employee can promote their business or goods on social media platforms, stay up to date on current events, and so on. It will definitely be a policy that you and your organization's leaders can work out together. 
+                
+            If you hand out a company phone to an employee, should you set a device password? 
+                Absolutely. People lose their mobile devices all the time. If a device is lost or stolen, it should be password protected, at the very least, so that someone else can't easily view company emails.
+            
+            Documentation of policy:
+                It's supercritical to maintain good documentation. If you're managing systems, you'll be responsible for documenting your company's policies, routine procedures, and more. You can store this documentation on internal wiki site, file server, software, wherever. The takeaway here is that having documentation of policies already available to your employees will help them learn and maintain those policies.
+        #
+    #
+
+    #Users and hardware provisioning
+        sys admins have to be able to create new users and give them access to their company's resources. On the flipside of that, they also have to remove users from an IT infrastructure if users leave the company. It's not just user accounts they have to worry about, sys admins are also responsible for user machines. They have to make sure a user is able to log in and that the computer has the necessary software that a user needs to be productive. Sys admins also have to ensure that the hardware they are provisioning or setting up for users is standardized in some way. We talked in an earlier course about imaging a machine with the same image. This practice is industry standard with dealing with multiple user environments. Not only do sys admins have to standardize settings on a machine, they have to figure out the hardware lifecycle of a machine. They often think of the hardware lifecycle of a machine in the literal way. When was it built? When was it first used? Did the organization buy it brand new or was it used? Who maintained it before? How many users have used it in the current organization? What happens to this machine if someone needs a new one? These are all good questions to ask when thinking about an organization's technology.
+
+        Hardware Life-Cycle:
+            There are four main stages of the hardware lifecycle. 
+                
+            Procurement-This is the stage where hardware is purchased or re-used for any employee. 
+                
+            Deployment-This is where hardware is set up so that the employee can do their job. 
+                
+            Maintenance-This is the stage where software is updated and hardware issues are fixed if and when they occur. 
+                
+            Retirement-In this final stage, hardware becomes unusable or no longer needed and it needs to be properly removed from the fleet. 
+                
+            In a small position, a typical hardware lifecycle might go something like this. First, a new employee is hired by the company, human resources tells you to provision a computer for them and set up their user account. Next, you allocate a computer you have from your inventory or you order a new one if you need it. When you allocate hardware you may need to tag the machine with a sticker so they can keep track of which inventory belongs to the organization. Next, you image the computer with the base image for further using a streamlined method. Next, you name the computer with a standardized host name. This helps with managing machines. In regards to the name itself, we talked about using a format such as username-location, but other host name starters can be used. After that, you install software the user needs on their machine. Then the new employee starts and you streamline the setup process for them by providing instructions on how to log into their new machine, get email etc. Eventually, if a computer sees a hardware issue, a failure, you look into it and think through the next steps. If it's getting too old, you'll have to figure out where to recycle it and where to get new hardware. Finally, if a user leaves the company you'll also have to remove their access from IT resources and wipe the machine so that you can eventually re-allocate it to someone else.
+
+    #
+
+    #Routine Maintenance
+        When you manage machines for a company, you don't just set it and forget it, you have to constantly provide updates and maintenance so that they run the latest secure software. When you have to do this for a fleet of machines, you don't want to immediately install updates as soon as they come in. That would be way too time-consuming. Instead, to effectively update and manage hardware, you do something called batch update. This means that once every month or so, you update all your servers with the latest security patches. You have to find time to take their services offline, perform the update, and verify that the new update works with the service. You also don't have to perform an update every single time a new software becomes available. But, it's common practice to do batch updates for security updates and very critical system updates. 
+        #
+
+    #Vendors
+        In an enterprise setting, sys admins have to procure this hardware one way or another. Working with vendors or other businesses to buy hardware is a common practice. Setting up businesses accounts with vendors like Hewlett Packard, Dell, Apple, etc., is usually beneficial since these companies can offer discounts to businesses.
+    #
+#
+    
+#Applying Changes
+
+    #With Great Powers Comes Great Responsibilities
+        When you have administrative rights for something, whether it's one machine, a fleet of 100 machines, or a cloud service with thousands of users, you need to be careful that you use these rights responsibility. The most important thing is to avoid using administrator rights for tasks that don't require them. For example, you shouldn't browse the web as an administrator user. Try to minimize the time spent in an administrative session.
+
+        Respect the privacy of others. Don't use your administrator rights to access private information that you have no business accessing.
+
+        Being an administrator of an email server doesn't mean you should read someone else's email.
+
+        Even if you have a business reason to access a certain piece of information, make sure you follow the appropriate process or policies to access it. You shouldn't use your administrator rights to bypass any rules.
+
+        Documenting what you did is crucial when using administrator rights. Listing the commands you executed let's you repeat the same exact process in the future and fix any problems that may come up later. In Linux, there's a command called script. We can use it to record a group of commands as they're being issued along their output. In Windows Power-Shell, there's an equivalent command called Start-Transcript. The output of these tools is useful for automating procedures. Similarly, we can use the recordMyDesktop tool to record the interaction with the graphical application.
+        #
+
+    #Reading
+        Recording your actions When you are going to make changes in a machine, it’s very important to have a clear plan of what you are going to do and to store the actions that you actually took.
+
+        A common practice for system administrators that work with bug queues or ticketing systems is to include the commands executed and the output obtained in the corresponding bug or ticket. This is recommended if the commands that need to be executed are few and straightforward.
+
+        However, there are situations where you don’t yet know which commands exactly you’ll need to execute because there’s some investigation that needs to happen. In cases like that, it can be helpful to use a command like script for Linux or Start-Transcript for Windows.
+
+        script
+            In the case of script, you can call it like this:
+
+            script session.log
+
+            This will write the contents of your session to the session.log file. When you want to stop recording, you can write exit or press Ctrl-D. The generated file will be in ANSI format which includes the colors that were displayed on screen. In order to read them, you can use commands like ansi2txt<http://manpages.ubuntu.com/manpages/bionic/man1/ansi2txt.1.html> or ansi2html<http://manpages.ubuntu.com/manpages/bionic/man1/ansi2html.1.html> to convert it to plain text or HTML respectively.
+
+        Start-Transcript
+
+            In the case of Start-Transcript, you can call it like this:
+
+            Start-Transcript -Path C:\Transcript.txt
+
+            This will write the contents of the session to C:\Transcript.txt. When you want to stop recording you need to call Stop-Transcript. The file created is a plain text file where the commands executed and their outputs are stored.
+
+        Recording Graphical Sessions
+
+            Performing system administration actions through a Graphical user interface is less common (as it’s harder to automate and to perform remotely), but it’s still something that may happen sometimes.
+
+            If you are going to be performing an action that needs to be done graphically and you can document what you are doing, you can use a specialized tool like recordMyDesktop<http://recordmydesktop.sourceforge.net/about.php> for Linux, or general video tools like OBS<https://obsproject.com/> or VLC<https://www.videolan.org/vlc/index.html>.
+    #
+
+    #Never Test in Production
+        In an infrastructure context, we call the parts of the infrastructure where certain services are executed and serve to its users production. If you host a website, the service that deliver the website content to the users are the production servers. Inside your company, the servers that validate users' passwords are the production authentication servers.
+
+        The key to safely making these changes is to always run them through a test environment first. The test environment is usually a virtual machine running the same configuration as a production environment, but isn't actually serving any users of the service. This way, if there's a problem when deploying the change, you'll be able to fix it without the user seeing it. If you're in charge of an important service that you need to keep running during a configuration change, we recommend that you have a secondary or a stand-by machine. This machine will be exactly the same as a production machine, but won't receive any traffic from actual users until you enable it to do so. In this case, once you've tested your changes in the test environment and are ready to deploy them to production, first, apply the changes to the secondary machine. Once the changes have been applied, make the stand-by machine and primary machine, and then apply the changes to the other machine. For even bigger services, when you have lots of servers providing the service, you may want to have canaries. Similar to the canary of coal miners carry to detect toxic gases when entering the mines, you'll use a small group of servers to detect any potential issues in the larger changes you want to push out in the system. Once you verify that it works correctly on those machines, you then deploy the change to the rest of the fleet. That way, if there's an issue with the change, only a subset of the users get exposed to it, and you can roll it back before it hits everyone.
+
+        Always use a test instance first and only deploy the change to production after verifying that it works.
+    #
+
+    #Assessing Risk
+        We can assess the risk involved by considering how important the services to the infrastructure and how many users would be impacted if the service went down. Certain services are mission critical. If the centralized authentication system is down, no one will ever be able to log in. If the billing system is unreachable, the company won't be able to receive payments. If your backups are lost, you have no safeguards in the event of a disaster. But not all services are mission critical. An informational website isn't as critical as an e-commerce site. An internal ticket system isn't as critical as an external customer support application. The infrastructure needed for a new installation isn't as critical as the one used for logging into existing machines. In general, the more users your service reaches, the more you'll want to ensure that changes aren't disruptive. The more important your service is to your company's operations, the more you'll work to keep the service up.
+    #
+
+    #Fixing Things The Right Way
+        Let's say you're dealing with a problem, either because you found it or someone reported it to you. Before you start fixing it, make sure you can recreate the error as you'll want to test your solution to make sure the problem is gone after you apply the fix. This is called a Reproduction case. And means you're creating a roadmap to retrace the steps that led the user to an unexpected outcome.
+
+        When looking for a reproduction case, there are three questions you'll need to answer. 
+            What steps did you take to get to this point? 
+            What's the unexpected or bad result?
+            And what's the expected result?
+    #
+    
+#
